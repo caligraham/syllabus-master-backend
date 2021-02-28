@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_170748) do
+ActiveRecord::Schema.define(version: 2021_02_28_193257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,9 +25,11 @@ ActiveRecord::Schema.define(version: 2021_02_28_170748) do
     t.string "title"
     t.text "description"
     t.string "image_url"
-    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_syllabuses_on_category_id"
   end
 
+  add_foreign_key "syllabuses", "categories"
 end
