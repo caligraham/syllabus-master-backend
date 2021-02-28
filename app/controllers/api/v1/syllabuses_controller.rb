@@ -3,8 +3,15 @@ class Api::V1::SyllabusesController < ApplicationController
     def index
         # instance variables arent' actually needed because JSON does not pass through view file. Maintaining the variable is not necessary.
         @syllabuses = Syllabus.all
-        render json: @syllabuses
+        # render json: @syllabuses
+        # options = {
+        #     #include associated category
+        #     include: [:category]
+        # }
         # renders as JSON format
+        # render json: SyllabusSerializer.new(@syllabuses, options)
+        # to add a relationship in serializer
+        render json: SyllabusSerializer.new(@syllabuses)
     end
 
     def create
